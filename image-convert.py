@@ -11,6 +11,10 @@ def img2ascii(image, pixellation):
 	ascii_length = int(len(gray_image[1]) / pixellation)
 	ascii_height = int(len(gray_image) / pixellation / 2)
 	ascii_image_values = np.ndarray(shape=(ascii_height, ascii_length), dtype = float)
+	ascii_image = np.ndarray(shape=(ascii_height, ascii_length), dtype = object)
+	#high will he highest value, low lowest. This will be used to decide what the range of values for each 'color' will be
+	high = 0.0
+	low = 1.0
 	#x and y are the position in the new ascii image
 	for x in range(ascii_length):
 		for y in range(2 * ascii_height):
@@ -22,22 +26,33 @@ def img2ascii(image, pixellation):
 				for gray_y in range((y * pixellation), ((y + 1) * pixellation)):
 					count = count + 1
 					total = total + gray_image[gray_y][gray_x]
-			ascii_image_values[int(y / 2)][x] = total / count
+			avg = total / count
+			if avg > high:
+				high = avg
+			if avg < low:
+				low = avg
+			ascii_image_values[int(y / 2)][x] = avg
+
+
+	spectrum = []
+	spect_length = high - low
+	for x in range(5):
+		spectrum.append(x * (spect_length / 5))
 
 	for y in range(ascii_height):
-		line = ''
 		for x in range(ascii_length):
-			line = line + to_ascii(ascii_image_values[y][x])
-		print(line)
+			ascii_image[y][x] = to_ascii(ascii_image_values[y][x], spectrum)
 
-def to_ascii(x):
-	if x > .9:
+	print_ascii(ascii_image)
+
+def to_ascii(value, range):
+	if value > range[4]:
 		return '█'
-	if x > .75:
+	if value > range[3]:
 		return '▓'
-	if x > .5:
+	if value > range[2]:
 		return '▒'
-	if x > .25:
+	if value > range[1]:
 		return '░'
 	return ' '
 
