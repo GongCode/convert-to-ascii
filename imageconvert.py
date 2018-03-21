@@ -67,9 +67,9 @@ def print_ascii(ascii_image):
 
 
 
-#name of file you want to convert
-file = io.imread(os.path.join('mountain.jpg'))
-#square width of how many pixels of original should be in one pixel of output
-pixellation = 10
+# #name of file you want to convert
+# file = io.imread(os.path.join('mountain.jpg'))
+# #square width of how many pixels of original should be in one pixel of output
+# pixellation = 10
 
-print_ascii(img2ascii(file, pixellation))
+# print_ascii(img2ascii(file, pixellation))
