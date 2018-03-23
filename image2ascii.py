@@ -1,4 +1,3 @@
-import os
 from skimage import io
 from skimage.color import rgb2gray
 import matplotlib.pyplot as plt
@@ -53,7 +52,7 @@ def img2ascii(image, pixellation):
 
 	return ascii_image
 
-
+#value is the grayscale value. range is what range should be converted to what ascii symbol
 def to_ascii(value, range):
 	if value > range[4]:
 		return '█'
@@ -65,6 +64,7 @@ def to_ascii(value, range):
 		return '░'
 	return ' '
 
+#prints given array of ascii symbols to console
 def print_ascii(ascii_image):
 	for x in range(len(ascii_image)):
 		line = ''
