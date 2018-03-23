@@ -1,23 +1,20 @@
 import cv2
 import time
+from tqdm import tqdm
 from imageconvert import img2ascii, print_ascii
 
 def video2ascii(video, pixellation):
 	vidcap = cv2.VideoCapture(video)
+	vidlength = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
 
 	success,image = vidcap.read()
-
-	count = 0;
 	img_arr = [] 
-	while success and count < 5000:
+
+	for count in tqdm(range(vidlength - 1)):
 		success,image = vidcap.read()
 		if cv2.waitKey(10) == 27:
 			break
-		count += 1
-		try:
-			img_arr.append(img2ascii(image, pixellation))
-		except:
-			continue
+		img_arr.append(img2ascii(image, pixellation))
 	return img_arr
 
 
@@ -29,6 +26,6 @@ ascii_video = video2ascii(video, pixellation)
 while True:
 	for x in range(len(ascii_video)):
 		for y in range(30):
-			print()
+			print(flush=True)
 		print_ascii(ascii_video[x])
 		time.sleep(.04)
