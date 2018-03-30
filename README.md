@@ -1,6 +1,19 @@
 # Convert to ASCII
 
 This project will convert both images and videos to block ASCII art and then print them to console.
+Example Image:
+![Mountain](https://github.com/danielferriss/convert-to-ascii/blob/master/media/mountain.jpg)
+![10 Pixellized Mountain](https://github.com/danielferriss/convert-to-ascii/blob/master/media/10pixellation.png)
+(10 pixellation)
+You can also change how pixellated the result is:
+![30 Pixellized Mountain](https://github.com/danielferriss/convert-to-ascii/blob/master/media/30pixellation.png)
+(30 pixellation)
+
+You can convert videos as well.
+
+![Zebra Video](https://github.com/danielferriss/convert-to-ascii/blob/master/media/zebra.gif)
+![Pixellated Zebra Video](https://github.com/danielferriss/convert-to-ascii/blob/master/media/pixelzebra.gif)
+Pixellation works the same way on videos as shown earlier.
 
 ## Getting Started
 
